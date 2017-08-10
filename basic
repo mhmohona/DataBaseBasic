@@ -1,0 +1,177 @@
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use office;
+Database changed
+mysql> create table employee(
+    -> std_no char(7),
+    -> name varchar(30),
+    -> roll char(15),
+    -> salary int,
+    -> joining date
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into employee values('1020001','Asim Kumar','Manager','50000','200
+3-11-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('1020001','Asim Kumar','Manager',50000,'2003-
+11-15');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('2020012','Baijlal Chowdhery','Accountant',40
+000,'2008-08-01');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('2020043','Kamal Shikder','Accountant',43000,
+'2006-01-23');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('2020014','Razon Das','HR Officer',45000,'200
+8-02-13');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('1020005','Rajat Shuvro','Manager',55000,'200
+0-12-20');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee values('3070006','Shuvojit Barua','HR Officer',42000
+,'2011-03-25');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from employee;
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 1020005 | Rajat Shuvro      | Manager    |  55000 | 2000-12-20 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
++---------+-------------------+------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select*from employee where name like 'A%' or name like '%a';
++---------+----------------+------------+--------+------------+
+| std_no  | name           | roll       | salary | joining    |
++---------+----------------+------------+--------+------------+
+| 1020001 | Asim Kumar     | Manager    |  50000 | 2003-11-15 |
+| 1020001 | Asim Kumar     | Manager    |  50000 | 2003-11-15 |
+| 3070006 | Shuvojit Barua | HR Officer |  42000 | 2011-03-25 |
++---------+----------------+------------+--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from employee where salary between 40,000 and 45,000
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near '000 a
+nd 45,000' at line 1
+mysql> select* from employee where salary between 40,000 and 45,000
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near '000 a
+nd 45,000' at line 1
+mysql> select* from employee where salary between 40000 and 45000;
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
++---------+-------------------+------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select* from employee where joining>2005-12-31;
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 1020005 | Rajat Shuvro      | Manager    |  55000 | 2000-12-20 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
++---------+-------------------+------------+--------+------------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql> select* from employee where joining>'2005-12-31';
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
++---------+-------------------+------------+--------+------------+
+4 rows in set (0.00 sec)
+
+mysql> select name,salary*(salary*15/100) As raised_salary from employee;
++-------------------+----------------+
+| name              | raised_salary  |
++-------------------+----------------+
+| Asim Kumar        | 375000000.0000 |
+| Asim Kumar        | 375000000.0000 |
+| Baijlal Chowdhery | 240000000.0000 |
+| Kamal Shikder     | 277350000.0000 |
+| Razon Das         | 303750000.0000 |
+| Rajat Shuvro      | 453750000.0000 |
+| Shuvojit Barua    | 264600000.0000 |
++-------------------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select name,salary+(salary*15/100) As raised_salary from employee;
++-------------------+---------------+
+| name              | raised_salary |
++-------------------+---------------+
+| Asim Kumar        |    57500.0000 |
+| Asim Kumar        |    57500.0000 |
+| Baijlal Chowdhery |    46000.0000 |
+| Kamal Shikder     |    49450.0000 |
+| Razon Das         |    51750.0000 |
+| Rajat Shuvro      |    63250.0000 |
+| Shuvojit Barua    |    48300.0000 |
++-------------------+---------------+
+7 rows in set (0.00 sec)
+
+mysql> select* from employee order salary desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near 'salar
+y desc' at line 1
+mysql> select* from employee order salary Desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
+corresponds to your MySQL server version for the right syntax to use near 'salar
+y Desc' at line 1
+mysql> select* from employee order by salary Desc;
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 1020005 | Rajat Shuvro      | Manager    |  55000 | 2000-12-20 |
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
++---------+-------------------+------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select* from employee order by name asc;
++---------+-------------------+------------+--------+------------+
+| std_no  | name              | roll       | salary | joining    |
++---------+-------------------+------------+--------+------------+
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 1020001 | Asim Kumar        | Manager    |  50000 | 2003-11-15 |
+| 2020012 | Baijlal Chowdhery | Accountant |  40000 | 2008-08-01 |
+| 2020043 | Kamal Shikder     | Accountant |  43000 | 2006-01-23 |
+| 1020005 | Rajat Shuvro      | Manager    |  55000 | 2000-12-20 |
+| 2020014 | Razon Das         | HR Officer |  45000 | 2008-02-13 |
+| 3070006 | Shuvojit Barua    | HR Officer |  42000 | 2011-03-25 |
++---------+-------------------+------------+--------+------------+
+7 rows in set (0.00 sec)
+
+mysql>
