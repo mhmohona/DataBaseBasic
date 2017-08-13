@@ -64,16 +64,6 @@ mysql> select*from employee where name like 'A%' or name like '%a';
 +---------+----------------+------------+--------+------------+
 3 rows in set (0.00 sec)
 
-mysql> select*from employee where salary between 40,000 and 45,000
-    -> ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
-corresponds to your MySQL server version for the right syntax to use near '000 a
-nd 45,000' at line 1
-mysql> select* from employee where salary between 40,000 and 45,000
-    -> ;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
-corresponds to your MySQL server version for the right syntax to use near '000 a
-nd 45,000' at line 1
 mysql> select* from employee where salary between 40000 and 45000;
 +---------+-------------------+------------+--------+------------+
 | std_no  | name              | roll       | salary | joining    |
@@ -110,19 +100,6 @@ mysql> select* from employee where joining>'2005-12-31';
 +---------+-------------------+------------+--------+------------+
 4 rows in set (0.00 sec)
 
-mysql> select name,salary*(salary*15/100) As raised_salary from employee;
-+-------------------+----------------+
-| name              | raised_salary  |
-+-------------------+----------------+
-| Asim Kumar        | 375000000.0000 |
-| Asim Kumar        | 375000000.0000 |
-| Baijlal Chowdhery | 240000000.0000 |
-| Kamal Shikder     | 277350000.0000 |
-| Razon Das         | 303750000.0000 |
-| Rajat Shuvro      | 453750000.0000 |
-| Shuvojit Barua    | 264600000.0000 |
-+-------------------+----------------+
-7 rows in set (0.00 sec)
 
 mysql> select name,salary+(salary*15/100) As raised_salary from employee;
 +-------------------+---------------+
@@ -138,14 +115,6 @@ mysql> select name,salary+(salary*15/100) As raised_salary from employee;
 +-------------------+---------------+
 7 rows in set (0.00 sec)
 
-mysql> select* from employee order salary desc;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
-corresponds to your MySQL server version for the right syntax to use near 'salar
-y desc' at line 1
-mysql> select* from employee order salary Desc;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that
-corresponds to your MySQL server version for the right syntax to use near 'salar
-y Desc' at line 1
 mysql> select* from employee order by salary Desc;
 +---------+-------------------+------------+--------+------------+
 | std_no  | name              | roll       | salary | joining    |
@@ -174,4 +143,3 @@ mysql> select* from employee order by name asc;
 +---------+-------------------+------------+--------+------------+
 7 rows in set (0.00 sec)
 
-mysql>
